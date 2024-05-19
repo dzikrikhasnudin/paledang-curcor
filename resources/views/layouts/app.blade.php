@@ -39,7 +39,7 @@
         @endif
 
         <<div class="antialiased bg-gray-50 dark:bg-gray-900">
-            <main class="md:ml-64 h-auto mt-14 pt-2">
+            <main class="md:ml-64 h-auto mt-8 pt-2">
                 @include('partials.navigation')
                 @include('partials.bottom-navigation')
                 @include('partials.sidebar')
@@ -51,8 +51,8 @@
     @stack('modals')
 
     <script src="https://cdn.jsdelivr.net/npm/apexcharts"></script>
-    @livewireScripts
     @livewire('wire-elements-modal')
+    @livewireScripts
 </body>
 
 </html>

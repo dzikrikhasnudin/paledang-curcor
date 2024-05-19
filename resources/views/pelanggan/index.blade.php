@@ -89,7 +89,7 @@
                                 </td>
                                 <th scope="row"
                                     class="px-4 py-3 font-medium text-gray-900 whitespace-nowrap dark:text-white">
-                                    {{ $client->name .' - ' . $client->id }}</th>
+                                    {{ $client->name }}</th>
                                 <td class="px-4 py-3">{{ $client->address }}</td>
                                 <td class="px-4 py-3">{{ $client->start_meter }}</td>
                                 <td class="px-4 py-3">{{ $client->current_meter }}</td>
