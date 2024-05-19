@@ -12,13 +12,24 @@ class Index extends Component
 {
     use WithPagination;
 
-    #[Layout('layouts.app')]
+
+    public $cari;
+
+    protected $queryString = ['cari'];
+
+    public function mount()
+    {
+        $this->cari = request()->query('cari', $this->cari);
+    }
 
     public function render()
     {
-        $clients = Client::latest();
+        // $clients = Client::latest();
         return view('pelanggan.index', [
-            'clients' => $clients->paginate(8)
+            'clients' => $this->cari == null ?
+                Client::latest()->paginate(8) :
+                Client::where('name', 'like', '%' . $this->cari . '%')
+                ->orWhere('address', 'like', '%' . $this->cari . '%')->paginate(8)
         ]);
     }
 }
