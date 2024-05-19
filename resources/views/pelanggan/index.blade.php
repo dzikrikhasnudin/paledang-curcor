@@ -101,6 +101,7 @@
                                         Edit
                                     </button>
                                     <button type="button"
+                                        wire:click="$dispatch('openModal', { component: 'client.delete', arguments: { client: {{ $client->id }} }})"
                                         class="inline-flex items-center px-3 py-2 text-sm font-medium text-center text-white bg-red-600 rounded-lg hover:bg-red-800 focus:ring-4 focus:ring-red-300 dark:focus:ring-red-900">
                                         <i class="bi bi-trash-fill mr-2"></i>
                                         Hapus
