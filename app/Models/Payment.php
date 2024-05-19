@@ -4,9 +4,9 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
-use Illuminate\Database\Eloquent\Relations\HasMany;
+use Illuminate\Database\Eloquent\Relations\BelongsTo;
 
-class Client extends Model
+class Payment extends Model
 {
     use HasFactory;
 
@@ -15,13 +15,13 @@ class Client extends Model
         'updated_at' => 'datetime:Y-m-d H:m:s'
     ];
 
-    protected $table = 'clients';
+    protected $table = 'payments';
     protected $fillable = [
-        'name', 'address', 'start_meter', 'current_meter'
+        'client_id', 'month', 'amount', 'status'
     ];
 
-    public function payments(): HasMany
+    public function client(): BelongsTo
     {
-        return $this->hasMany(Payment::class);
+        return $this->belongsTo(Client::class, 'client_id');
     }
 }
