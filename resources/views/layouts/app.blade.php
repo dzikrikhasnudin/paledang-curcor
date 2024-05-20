@@ -53,6 +53,8 @@
     <script src="https://cdn.jsdelivr.net/npm/apexcharts"></script>
     @livewire('wire-elements-modal')
     @livewireScripts
+
+    @stack('script')
 </body>
 
 </html>

@@ -18,7 +18,7 @@ class ClientFactory extends Factory
     {
         return [
             'name' => fake()->name(),
-            'address' => fake()->city(),
+            'address' => fake()->randomElement(['Paledang', 'Kapol', 'Legok Kiara', 'Barujati']),
             'start_meter' => 0,
             'current_meter' => rand(10, 100),
             'created_at' => now(),
