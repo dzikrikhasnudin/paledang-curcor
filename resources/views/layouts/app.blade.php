@@ -38,14 +38,14 @@
         </header>
         @endif
 
-        <<div class="antialiased bg-gray-50 dark:bg-gray-900">
-            <main class="md:ml-64 h-auto mt-8 pt-2">
+        <div class="antialiased bg-gray-50 dark:bg-gray-900">
+            <main class="md:ml-64 h-auto mt-12 pt-2 pb-10 rounded">
                 @include('partials.navigation')
                 @include('partials.bottom-navigation')
                 @include('partials.sidebar')
                 {{ $slot }}
             </main>
-    </div>
+        </div>
     </div>
 
     @stack('modals')

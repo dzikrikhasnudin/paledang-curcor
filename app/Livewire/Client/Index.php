@@ -14,6 +14,7 @@ class Index extends Component
 
 
     public $cari;
+    public $paginate = 8;
 
     protected $queryString = ['cari'];
 
@@ -27,9 +28,9 @@ class Index extends Component
         // $clients = Client::latest();
         return view('pelanggan.index', [
             'clients' => $this->cari == null ?
-                Client::latest()->paginate(8) :
+                Client::latest()->paginate($this->paginate) :
                 Client::where('name', 'like', '%' . $this->cari . '%')
-                ->orWhere('address', 'like', '%' . $this->cari . '%')->paginate(8)
+                ->orWhere('address', 'like', '%' . $this->cari . '%')->paginate($this->paginate)
         ]);
     }
 }

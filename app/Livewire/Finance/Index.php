@@ -3,6 +3,7 @@
 namespace App\Livewire\Finance;
 
 use Livewire\Component;
+use Livewire\Attributes\Layout;
 
 class Index extends Component
 {
