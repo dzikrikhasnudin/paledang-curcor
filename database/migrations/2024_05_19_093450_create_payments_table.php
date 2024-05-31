@@ -15,8 +15,10 @@ return new class extends Migration
             $table->id();
             $table->foreignId('client_id')->constrained('clients')->cascadeOnDelete();
             $table->string('month');
+            $table->bigInteger('usage')->default(0);
+            $table->string('image')->nullable();
             $table->bigInteger('amount')->default(0);
-            $table->enum('status', ['paid', 'unpaid']);
+            $table->enum('status', ['paid', 'unpaid'])->default('unpaid');
             $table->timestamps();
         });
     }
