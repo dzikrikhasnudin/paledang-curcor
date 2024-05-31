@@ -1,7 +1,7 @@
 <div>
 
     <section class=" bg-gray-50 dark:bg-gray-900 p-3 rounded-xl min-h-screen">
-        <div class="xl:max-w-screen-xl mx-auto">
+        <div class="space-y-3 mx-auto">
             <!-- Start coding here -->
 
             <div class="bg-white dark:bg-gray-800 relative shadow-md sm:rounded-lg overflow-hidden">
@@ -30,9 +30,9 @@
                     </div>
                     <div
                         class="w-full md:w-auto flex flex-col md:flex-row space-y-2 md:space-y-0 items-stretch md:items-center justify-end md:space-x-3 flex-shrink-0">
-                        <div class="items-center sm:flex">
-                            <select id="countries"
-                                class="flex items-center bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500 mr-4">
+                        <div class="grid grid-cols-2 gap-2 items-center justify-between">
+                            <select id="month"
+                                class="w-full items-center bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500 mr-4">
                                 <option selected>Filter</option>
                                 <option value="Januari">Januari</option>
                                 <option value="Februari">Februari</option>
@@ -47,7 +47,14 @@
                                 <option value="November">November</option>
                                 <option value="Desember">Desember</option>
                             </select>
-
+                            <div
+                                class="w-full md:w-auto flex flex-col md:flex-row space-y-2 md:space-y-0 items-stretch md:items-center justify-end md:space-x-3 flex-shrink-0">
+                                <a href="{{ route('tagihan.create') }}"
+                                    class="flex items-center justify-center text-white bg-primary-700 hover:bg-primary-800 focus:ring-4 focus:ring-primary-300 font-medium rounded-lg text-sm px-4 py-2 dark:bg-primary-600 dark:hover:bg-primary-700 focus:outline-none dark:focus:ring-primary-800">
+                                    <i class="bi bi-plus me-1 text-xl"></i>
+                                    Catat Meter
+                                </a>
+                            </div>
                         </div>
 
                     </div>
@@ -63,7 +70,7 @@
                                 <th scope="col" class="px-4 py-3">Jumlah Tagihan</th>
                                 <th scope="col" class="px-4 py-3">Status</th>
                                 <th scope="col" class="px-4 py-3">
-                                     <span class="sr-only">Actions</span>
+                                    <span class="sr-only">Actions</span>
                                 </th>
                             </tr>
                         </thead>
@@ -81,9 +88,12 @@
                                 </td>
                                 <td class="px-4 py-3 text-nowrap">
                                     @if ($invoice->status == 'paid')
-                                    <span class="bg-green-100 text-green-800 text-xs font-medium me-2 px-2.5 py-0.5 rounded dark:bg-green-900 dark:text-green-300">Lunas</span>
-                                        @else
-                                        <span class="bg-red-100 text-red-800 text-xs font-medium me-2 px-2.5 py-0.5 rounded dark:bg-red-900 dark:text-red-300">Belum Lunas</span>
+                                    <span
+                                        class="bg-green-100 text-green-800 text-xs font-medium me-2 px-2.5 py-0.5 rounded dark:bg-green-900 dark:text-green-300">Lunas</span>
+                                    @else
+                                    <span
+                                        class="bg-red-100 text-red-800 text-xs font-medium me-2 px-2.5 py-0.5 rounded dark:bg-red-900 dark:text-red-300">Belum
+                                        Lunas</span>
                                     @endif
 
                                 </td>
