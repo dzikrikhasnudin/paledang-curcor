@@ -28,6 +28,12 @@ class Create extends Component
     {
         $this->client = Client::find($this->clientId);
 
+        $usage = $this->meter - $this->client->current_meter;
+
+        $this->client->update([
+            'current_meter' => $this->meter
+        ]);
+
 
         // dd($this->amount($this->meter));
 
@@ -43,23 +49,24 @@ class Create extends Component
             $imagePath = null;
         };
 
-
-        Payment::create([
+        $payment = Payment::create([
             'client_id' => $this->clientId,
             'month' => $this->month,
-            'meter' => $this->meter,
-            'amount' => $this->amount($this->meter),
+            'usage' => $usage,
+            'amount' => $this->amount($usage),
             'image' => $imagePath
         ]);
 
-        return redirect()->route('tagihan.index');
+        $this->client->update([
+            'current_meter' => $this->meter
+        ]);
+
+        return redirect()->route('tagihan.status', $payment->id);
     }
 
-    public function amount($meter)
+    public function amount($usage)
     {
         $price = 2000;
-        $usage = $meter - $this->client->current_meter;
-
         $amount = $usage * $price;
 
         return $amount;
