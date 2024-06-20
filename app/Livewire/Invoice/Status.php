@@ -13,6 +13,9 @@ class Status extends Component
     public $currentMeter;
     public $usage;
     public $amount;
+    public $date;
+    public $status;
+    public $image;
 
 
     public function mount($id)
@@ -23,10 +26,14 @@ class Status extends Component
         $this->currentMeter = $payment->client->current_meter;
         $this->usage = $payment->usage;
         $this->amount = $payment->amount;
+        $this->date = $payment->created_at;
+        $this->status = $payment->status;
+        $this->image = $payment->image;
 
     }
     public function render()
     {
+        // dd($this->image);
         return view('tagihan.status');
     }
 }
