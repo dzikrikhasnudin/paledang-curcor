@@ -21,41 +21,40 @@
             </button>
         </div>
         <!-- Modal body -->
-        <form class="p-4 md:p-5" wire:submit="update">
-            <div class="grid gap-4 mb-4 grid-cols-2">
-                <div class="col-span-2">
-                    <label for="name" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Nama
-                        Pelanggan</label>
-                    <input type="text" id="name" wire:model='clientName' aria-describedby="error-name"
-                        class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500"
-                        placeholder="Masukkan nama pelanggan" required="">
-                    <p id="error-name" class="mt-2 text-xs text-red-600 dark:text-red-400"><span
-                            class="font-medium">@error('clientName') {{ $message }} @enderror</p>
-
+        <div class="p-4 lg:p-6">
+            <div class="flex justify-between mb-4">
+                <div>
+                    <h4 class="font-bold text-lg text-gray-700 dark:text-gray-50">{{ $clientName }}</h4>
+                    <p class="dark:text-gray-300">{{ $clientAddress }}</p>
                 </div>
-                <div class="col-span-2">
-                    <label for="name"
-                        class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Alamat</label>
-                    <select id="category" wire:model='clientAddress'
-                        class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-500 focus:border-primary-500 block w-full p-2.5 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500">
-                        <option selected>Pilih Alamat</option>
-                        <option value="Paledang">Paledang</option>
-                        <option value="Barujati">Barujati</option>
-                        <option value="Kapol">Kapol</option>
-                        <option value="Legok Kiara">Legok Kiara</option>
-                    </select>
-                </div>
-
-
-
+                <div><small class="dark:text-gray-50">{{ $date->translatedFormat('l, d F Y') }}</small></div>
             </div>
-            <div class="flex justify-end">
-                <button type="submit"
-                    class="text-white inline-flex items-center  bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">
-                    Ubah
-                </button>
+            <div class="flex justify-between mb-1 dark:text-gray-300">
+                <p>Jumlah Meter Air</p>
+                <p class="font-semibold text-gray-900 dark:text-gray-300">{{ $currentMeter }} m<sup>3</sup></p>
+            </div>
+            <div class="flex justify-between mb-1 dark:text-gray-300">
+                <p>Pemakaian </p>
+                <p class="font-semibold text-gray-900 dark:text-gray-300">{{ $usage }} m<sup>3</sup></p>
             </div>
 
-        </form>
+            <div class="flex justify-between mt-4 font-bold text-md text-gray-700 dark:text-gray-50">
+                <p >Jumlah Tagihan</p>
+                <p >Rp{{ number_format($amount, 0, ',', '.'); }}</p>
+            </div>
+            <hr class="my-4">
+
+            <div class="flex justify-end gap-3">
+
+            <a href="{{ route('tagihan.index') }}"
+            class="flex items-center justify-center text-white bg-primary-700 hover:bg-primary-800 focus:ring-4 focus:ring-primary-300 font-medium rounded-lg text-sm px-4 py-2 dark:bg-primary-600 dark:hover:bg-primary-700 focus:outline-none dark:focus:ring-primary-800">
+            Kembali
+            </a>
+            <a href="{{ route('tagihan.create') }}"
+            class="flex items-center justify-center text-white bg-teal-700 hover:bg-teal-800 focus:ring-4 focus:ring-teal-300 font-medium rounded-lg text-sm px-4 py-2 dark:bg-teal-600 dark:hover:bg-teal-700 focus:outline-none dark:focus:ring-teal-800">
+            Tandai Sudah Lunas
+            </a>
+            </div>
+        </div>
     </div>
 </div>

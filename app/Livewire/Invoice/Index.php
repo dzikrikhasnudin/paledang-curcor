@@ -23,12 +23,16 @@ class Index extends Component
     }
     public function render()
     {
-
-
         return view('tagihan.index', [
             'invoices' => $this->month == null ?
                 Payment::latest()->paginate($this->paginate) :
                 Payment::where('month', 'like', '%' . $this->month . '%')->paginate($this->paginate)
         ]);
+    }
+
+    public function destroy($id)
+    {
+        $invoice = Payment::find($id);
+        $invoice->delete();
     }
 }

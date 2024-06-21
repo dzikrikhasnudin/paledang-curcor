@@ -107,6 +107,22 @@
                                         Detail
                                         <span class="sr-only">Icon description</span>
                                     </button>
+                                    @if ($invoice->image)
+
+                                    <a href="{{ asset('storage/' . $invoice->image) }}" data-lightbox="image-1"
+                                    class="text-white bg-teal-700 hover:bg-teal-800 focus:ring-4 focus:outline-none focus:ring-teal-300 font-medium rounded-lg text-sm p-2.5 text-center inline-flex items-center me-2 dark:bg-teal-600 dark:hover:bg-teal-700 dark:focus:ring-teal-800">
+                                    <i class="bi bi-card-image"></i>
+                                    </a>
+                                    @else
+                                    <button type="button"
+                                    class="cursor-not-allowed text-white bg-teal-200  font-medium rounded-lg text-sm p-2.5 text-center inline-flex items-center me-2 dark:bg-teal-300  ">
+                                    <i class="bi bi-card-image"></i>
+                                    </button>
+                                    @endif
+                                    <button type="button" wire:click="$dispatch('triggerDelete',{{ $invoice->id }})"
+                                        class="text-white bg-red-700 hover:bg-red-800 focus:ring-4 focus:outline-none focus:ring-red-300 font-medium rounded-lg text-sm p-2.5 text-center inline-flex items-center me-2 dark:bg-red-600 dark:hover:bg-red-700 dark:focus:ring-red-800">
+                                        <i class="bi bi-trash-fill"></i>
+                                    </button>
                                 </td>
                             </tr>
                             @empty
@@ -126,3 +142,38 @@
         </div>
     </section>
 </div>
+
+@push('style')
+<script src="{{ asset('vendor/lightbox2/dist/css/lightbox.min.css') }}"></script>
+@endpush
+
+@push('script')
+<script src="https://code.jquery.com/jquery-3.7.1.min.js" integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo=" crossorigin="anonymous"></script>
+<script src="{{ asset('vendor/lightbox2/dist/js/lightbox.min.js') }}"></script>
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+
+<script type="text/javascript">
+    document.addEventListener('DOMContentLoaded', function () {
+        @this.on('triggerDelete', invoiceId => {
+            Swal.fire({
+                title: 'Yakin hapus data?',
+                text: 'Data pelajaran akan dihapus permanen!',
+                icon: "warning",
+                showCancelButton: true,
+                confirmButtonColor: '#E12425',
+                cancelButtonColor: '#aaa',
+                confirmButtonText: 'Hapus saja!',
+                cancelButtonText: 'Batalkan'
+            }).then((result) => {
+         //if user clicks on delete
+                if (result.value) {
+             // calling destroy method to delete
+                    @this.call('destroy', invoiceId)
+             // success response
+                    Swal.fire({title: 'Data pelajaran berhasil dihapus!', icon: 'success'});
+                }
+            });
+        });
+    });
+</script>
+@endpush
