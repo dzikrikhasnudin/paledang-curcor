@@ -13,11 +13,22 @@ class Index extends Component
     #[Layout('layouts.app')]
 
     public $paginate = 8;
+    public $month;
+
+    protected $queryString = ['bulan'];
+
+    public function mount()
+    {
+        $this->month = request()->query('bulan', $this->month);
+    }
     public function render()
     {
 
+
         return view('tagihan.index', [
-            'invoices' => Payment::latest()->paginate($this->paginate)
+            'invoices' => $this->month == null ?
+                Payment::latest()->paginate($this->paginate) :
+                Payment::where('month', 'like', '%' . $this->month . '%')->paginate($this->paginate)
         ]);
     }
 }

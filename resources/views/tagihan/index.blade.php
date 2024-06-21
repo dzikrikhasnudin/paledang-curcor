@@ -31,7 +31,7 @@
                     <div
                         class="w-full md:w-auto flex flex-col md:flex-row space-y-2 md:space-y-0 items-stretch md:items-center justify-end md:space-x-3 flex-shrink-0">
                         <div class="grid grid-cols-2 gap-2 items-center justify-between">
-                            <select id="month"
+                            <select id="month" wire:model.live='month'
                                 class="w-full items-center bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500 mr-4">
                                 <option selected>Filter</option>
                                 <option value="Januari">Januari</option>
@@ -81,7 +81,10 @@
                                     $loop->index + 1 }}</td>
                                 <th scope="row"
                                     class="px-4 py-3 font-medium text-gray-900 whitespace-nowrap dark:text-white">
-                                    {{ $invoice->client->name }}</th>
+                                    <a wire:click="$dispatch('openModal', { component: 'invoice.history', arguments: { client: {{ $invoice->client_id }} }})"
+                                        class="cursor-pointer hover:underline hover:text-blue-700 transition duration-200">{{
+                                        $invoice->client->name }}</a>
+                                </th>
                                 <td class="px-4 py-3 text-nowrap">{{ $invoice->client->address }}</td>
                                 <td class="px-4 py-3">{{ $invoice->month }}</td>
                                 <td class="px-4 py-3">{{ 'Rp'. number_format($invoice->amount, 0, ',', '.') }}
@@ -97,12 +100,12 @@
                                     @endif
 
                                 </td>
-                                <td class="px-4 py-3 flex items-center justify-end" >
+                                <td class="px-4 py-3 flex items-center justify-end">
                                     <button type="button"
                                         wire:click="$dispatch('openModal', { component: 'invoice.detail', arguments: { invoice: {{ $invoice->id }} }})"
                                         class="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm p-2.5 text-center inline-flex items-center me-2 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">
-                                    Detail
-                                    <span class="sr-only">Icon description</span>
+                                        Detail
+                                        <span class="sr-only">Icon description</span>
                                     </button>
                                 </td>
                             </tr>
