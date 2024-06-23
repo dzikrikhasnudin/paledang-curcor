@@ -32,26 +32,27 @@
             </div>
 
             <div class="flex justify-between mt-4 font-bold text-md text-gray-700 dark:text-gray-50">
-                <p >Jumlah Tagihan</p>
-                <p >Rp{{ number_format($amount, 0, ',', '.'); }}</p>
+                <p>Jumlah Tagihan</p>
+                <p>Rp{{ number_format($amount, 0, ',', '.'); }}</p>
             </div>
             <hr class="my-4">
 
             @if ($image)
-            <img src="{{ asset('storage/'. $image) }}" class="rounded" alt="">
+            <img src="{{ asset('storage/'. $image) }}" class="rounded aspect-square lg:w-1/2 object-cover mx-auto"
+                alt="">
             <hr class="my-4">
             @endif
 
             <div class="flex justify-end gap-3">
 
-            <a href="{{ route('tagihan.index') }}"
-            class="flex items-center justify-center text-white bg-primary-700 hover:bg-primary-800 focus:ring-4 focus:ring-primary-300 font-medium rounded-lg text-sm px-4 py-2 dark:bg-primary-600 dark:hover:bg-primary-700 focus:outline-none dark:focus:ring-primary-800">
-            Kembali
-            </a>
-            <a href="{{ route('tagihan.create') }}"
-            class="flex items-center justify-center text-white bg-teal-700 hover:bg-teal-800 focus:ring-4 focus:ring-teal-300 font-medium rounded-lg text-sm px-4 py-2 dark:bg-teal-600 dark:hover:bg-teal-700 focus:outline-none dark:focus:ring-teal-800">
-            Tandai Sudah Lunas
-            </a>
+                <a href="{{ route('tagihan.index') }}"
+                    class="flex items-center justify-center text-white bg-primary-700 hover:bg-primary-800 focus:ring-4 focus:ring-primary-300 font-medium rounded-lg text-sm px-4 py-2 dark:bg-primary-600 dark:hover:bg-primary-700 focus:outline-none dark:focus:ring-primary-800">
+                    Kembali
+                </a>
+                <a href="{{ route('tagihan.create') }}"
+                    class="flex items-center justify-center text-white bg-teal-700 hover:bg-teal-800 focus:ring-4 focus:ring-teal-300 font-medium rounded-lg text-sm px-4 py-2 dark:bg-teal-600 dark:hover:bg-teal-700 focus:outline-none dark:focus:ring-teal-800">
+                    Tandai Sudah Lunas
+                </a>
             </div>
 
         </div>

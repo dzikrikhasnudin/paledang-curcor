@@ -16,6 +16,7 @@ class Detail extends ModalComponent
     public $amount;
     public $date;
     public $status;
+    public $month;
 
     public function mount()
     {
@@ -27,8 +28,6 @@ class Detail extends ModalComponent
         $this->amount = $this->invoice->amount;
         $this->date = $this->invoice->created_at;
         $this->status = $this->invoice->status;
-
-
     }
     public function render()
     {

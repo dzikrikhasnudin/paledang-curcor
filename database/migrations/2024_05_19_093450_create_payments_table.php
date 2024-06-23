@@ -15,7 +15,7 @@ return new class extends Migration
             $table->id();
             $table->foreignId('client_id')->constrained('clients')->cascadeOnDelete();
             $table->string('month');
-            $table->bigInteger('total_meter');
+            // $table->bigInteger('total_meter');
             $table->bigInteger('usage')->default(0);
             $table->string('image')->nullable();
             $table->bigInteger('amount')->default(0);

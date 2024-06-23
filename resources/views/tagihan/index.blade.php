@@ -83,7 +83,7 @@
                                     class="px-4 py-3 font-medium text-gray-900 whitespace-nowrap dark:text-white">
                                     <a wire:click="$dispatch('openModal', { component: 'invoice.history', arguments: { client: {{ $invoice->client_id }} }})"
                                         class="cursor-pointer hover:underline hover:text-blue-700 transition duration-200">{{
-                                        $invoice->client->name }}</a>
+                                        $invoice->client->name }} - {{ $invoice->client->id }}</a>
                                 </th>
                                 <td class="px-4 py-3 text-nowrap">{{ $invoice->client->address }}</td>
                                 <td class="px-4 py-3">{{ $invoice->month }}</td>
@@ -108,14 +108,15 @@
                                         <span class="sr-only">Icon description</span>
                                     </button>
                                     @if ($invoice->image)
-                                    <button type="button" wire:click="$dispatch('openModal', { component: 'invoice.image', arguments: { invoice: {{ $invoice->id }} }})"
-                                    class="text-white bg-teal-700 hover:bg-teal-800 focus:ring-4 focus:outline-none focus:ring-teal-300 font-medium rounded-lg text-sm p-2.5 text-center inline-flex items-center me-2 dark:bg-teal-600 dark:hover:bg-teal-700 dark:focus:ring-teal-800">
-                                    <i class="bi bi-card-image"></i>
+                                    <button type="button"
+                                        wire:click="$dispatch('openModal', { component: 'invoice.image', arguments: { invoice: {{ $invoice->id }} }})"
+                                        class="text-white bg-teal-700 hover:bg-teal-800 focus:ring-4 focus:outline-none focus:ring-teal-300 font-medium rounded-lg text-sm p-2.5 text-center inline-flex items-center me-2 dark:bg-teal-600 dark:hover:bg-teal-700 dark:focus:ring-teal-800">
+                                        <i class="bi bi-card-image"></i>
                                     </button>
                                     @else
                                     <button type="button"
-                                    class="cursor-not-allowed text-white bg-teal-200  font-medium rounded-lg text-sm p-2.5 text-center inline-flex items-center me-2 dark:bg-teal-300  ">
-                                    <i class="bi bi-card-image"></i>
+                                        class="cursor-not-allowed text-white bg-teal-200  font-medium rounded-lg text-sm p-2.5 text-center inline-flex items-center me-2 dark:bg-teal-300  ">
+                                        <i class="bi bi-card-image"></i>
                                     </button>
                                     @endif
                                     <button type="button" wire:click="$dispatch('triggerDelete',{{ $invoice->id }})"
@@ -147,7 +148,8 @@
 @endpush
 
 @push('script')
-<script src="https://code.jquery.com/jquery-3.7.1.min.js" integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo=" crossorigin="anonymous"></script>
+<script src="https://code.jquery.com/jquery-3.7.1.min.js"
+    integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo=" crossorigin="anonymous"></script>
 <script src="{{ asset('vendor/lightbox2/dist/js/lightbox.min.js') }}"></script>
 <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 

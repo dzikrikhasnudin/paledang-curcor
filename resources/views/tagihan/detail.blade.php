@@ -4,12 +4,15 @@
         <!-- Modal header -->
         <div class="flex items-center justify-between p-4 md:p-5 border-b rounded-t dark:border-gray-600">
             <h3 class="text-lg font-semibold text-gray-900 dark:text-white">
-                Detail Tagihan
+                Detail Tagihan - {{ $invoice->month }}
                 @if ($invoice->status == 'paid')
-                                    <span class="bg-green-100 text-green-800 text-xs font-medium me-2 px-2.5 py-0.5 rounded dark:bg-green-900 dark:text-green-300">Lunas</span>
-                                        @else
-                                        <span class="bg-red-100 text-red-800 text-xs font-medium me-2 px-2.5 py-0.5 rounded dark:bg-red-900 dark:text-red-300">Belum Lunas</span>
-                                    @endif
+                <span
+                    class="bg-green-100 text-green-800 text-xs font-medium mx-2 px-2.5 py-0.5 rounded dark:bg-green-900 dark:text-green-300">Lunas</span>
+                @else
+                <span
+                    class="bg-red-100 text-red-800 text-xs font-medium mx-2 px-2.5 py-0.5 rounded dark:bg-red-900 dark:text-red-300">Belum
+                    Lunas</span>
+                @endif
             </h3>
             <button wire:click="$dispatch('closeModal')"
                 class="text-gray-400 bg-transparent hover:bg-gray-200 hover:text-gray-900 rounded-lg text-sm w-8 h-8 ms-auto inline-flex justify-center items-center dark:hover:bg-gray-600 dark:hover:text-white">
@@ -39,21 +42,21 @@
             </div>
 
             <div class="flex justify-between mt-4 font-bold text-md text-gray-700 dark:text-gray-50">
-                <p >Jumlah Tagihan</p>
-                <p >Rp{{ number_format($amount, 0, ',', '.'); }}</p>
+                <p>Jumlah Tagihan</p>
+                <p>Rp{{ number_format($amount, 0, ',', '.'); }}</p>
             </div>
             <hr class="my-4">
 
             <div class="flex justify-end gap-3">
 
-            <a href="{{ route('tagihan.index') }}"
-            class="flex items-center justify-center text-white bg-primary-700 hover:bg-primary-800 focus:ring-4 focus:ring-primary-300 font-medium rounded-lg text-sm px-4 py-2 dark:bg-primary-600 dark:hover:bg-primary-700 focus:outline-none dark:focus:ring-primary-800">
-            Kembali
-            </a>
-            <a href="{{ route('tagihan.create') }}"
-            class="flex items-center justify-center text-white bg-teal-700 hover:bg-teal-800 focus:ring-4 focus:ring-teal-300 font-medium rounded-lg text-sm px-4 py-2 dark:bg-teal-600 dark:hover:bg-teal-700 focus:outline-none dark:focus:ring-teal-800">
-            Tandai Sudah Lunas
-            </a>
+                <a href="{{ route('tagihan.edit', $invoice->id) }}"
+                    class="flex items-center justify-center text-white bg-amber-700 hover:bg-amber-800 focus:ring-4 focus:ring-amber-300 font-medium rounded-lg text-sm px-4 py-2 dark:bg-amber-600 dark:hover:bg-amber-700 focus:outline-none dark:focus:ring-amber-800">
+                    Edit
+                </a>
+                <a href="{{ route('tagihan.create') }}"
+                    class="flex items-center justify-center text-white bg-teal-700 hover:bg-teal-800 focus:ring-4 focus:ring-teal-300 font-medium rounded-lg text-sm px-4 py-2 dark:bg-teal-600 dark:hover:bg-teal-700 focus:outline-none dark:focus:ring-teal-800">
+                    Tandai Sudah Lunas
+                </a>
             </div>
         </div>
     </div>

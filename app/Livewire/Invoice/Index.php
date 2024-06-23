@@ -23,6 +23,7 @@ class Index extends Component
     }
     public function render()
     {
+        // dd(Payment::where('client_id', 10)->get());
         return view('tagihan.index', [
             'invoices' => $this->month == null ?
                 Payment::latest()->paginate($this->paginate) :

@@ -18,7 +18,8 @@
         </div>
         <!-- Modal body -->
         <div class="p-4 lg:p-6">
-          <div><img src="{{ asset('storage/' . $invoice->image) }}" alt="Meteran {{ $invoice->client->name }}"></div>
+            <div><img src="{{ asset('storage/' . $invoice->image) }}" class="rounded aspect-square object-cover"
+                    alt="Meteran {{ $invoice->client->name }}"></div>
         </div>
     </div>
 </div>
