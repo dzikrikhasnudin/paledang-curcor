@@ -17,7 +17,7 @@ class Payment extends Model
 
     protected $table = 'payments';
     protected $fillable = [
-        'client_id', 'month', 'amount', 'status', 'usage', 'image'
+        'client_id', 'month', 'amount', 'status', 'usage', 'image', 'total_meter'
     ];
 
     public function client(): BelongsTo

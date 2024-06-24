@@ -12,10 +12,10 @@ class Create extends Component
     use WithFileUploads;
 
     public $clientId;
+    public $price = 2000;
     public $month;
     public $meter;
     public $image;
-    public $client;
 
 
     public function render()
@@ -26,23 +26,23 @@ class Create extends Component
 
     public function save()
     {
-        $this->client = Client::find($this->clientId);
+        $previousMonth = Payment::where('client_id', $this->clientId)->latest()->first();
 
-        $usage = $this->meter - $this->client->current_meter;
+        $client = Client::find($this->clientId);
+        if ($previousMonth == null)
+        {
+            $previousMeter = $client->start_meter;
+        } else {
+            $previousMeter = $previousMonth->total_meter;
+        }
 
-        $this->client->update([
-            'current_meter' => $this->meter
-        ]);
-
-
-        // dd($this->amount($this->meter));
-
+        $usage = $this->meter - $previousMeter;
 
         if ($this->image) {
             $extension = $this->image->getClientOriginalExtension();
 
             $filePath = 'Meteran-' . date('Y') . '/' . $this->month;
-            $fileName = str_replace(' ', '-', $this->client->name) . '-' . str_replace(' ', '-', $this->client->address) . '.' . $extension;
+            $fileName = str_replace(' ', '-', $client->name) . '-' . str_replace(' ', '-', $client->address) . '.' . $extension;
 
             $imagePath = $this->image->storeAs($filePath, $fileName, 'public');
         } else {
@@ -52,23 +52,17 @@ class Create extends Component
         $payment = Payment::create([
             'client_id' => $this->clientId,
             'month' => $this->month,
+            'total_meter' => $this->meter,
             'usage' => $usage,
-            'amount' => $this->amount($usage),
+            'amount' => $usage * $this->price,
             'image' => $imagePath
         ]);
 
-        $this->client->update([
+        $client->update([
             'current_meter' => $this->meter
         ]);
 
         return redirect()->route('tagihan.status', $payment->id);
     }
 
-    public function amount($usage)
-    {
-        $price = 2000;
-        $amount = $usage * $price;
-
-        return $amount;
-    }
 }

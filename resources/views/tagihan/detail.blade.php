@@ -27,23 +27,23 @@
         <div class="p-4 lg:p-6">
             <div class="flex justify-between mb-4">
                 <div>
-                    <h4 class="font-bold text-lg text-gray-700 dark:text-gray-50">{{ $clientName }}</h4>
-                    <p class="dark:text-gray-300">{{ $clientAddress }}</p>
+                    <h4 class="font-bold text-lg text-gray-700 dark:text-gray-50">{{ $invoice->client->name }}</h4>
+                    <p class="dark:text-gray-300">{{ $invoice->client->address }}</p>
                 </div>
                 <div><small class="dark:text-gray-50">{{ $date->translatedFormat('l, d F Y') }}</small></div>
             </div>
             <div class="flex justify-between mb-1 dark:text-gray-300">
                 <p>Jumlah Meter Air</p>
-                <p class="font-semibold text-gray-900 dark:text-gray-300">{{ $currentMeter }} m<sup>3</sup></p>
+                <p class="font-semibold text-gray-900 dark:text-gray-300">{{ $invoice->total_meter }} m<sup>3</sup></p>
             </div>
             <div class="flex justify-between mb-1 dark:text-gray-300">
                 <p>Pemakaian </p>
-                <p class="font-semibold text-gray-900 dark:text-gray-300">{{ $usage }} m<sup>3</sup></p>
+                <p class="font-semibold text-gray-900 dark:text-gray-300">{{ $invoice->usage }} m<sup>3</sup></p>
             </div>
 
             <div class="flex justify-between mt-4 font-bold text-md text-gray-700 dark:text-gray-50">
                 <p>Jumlah Tagihan</p>
-                <p>Rp{{ number_format($amount, 0, ',', '.'); }}</p>
+                <p>Rp{{ number_format($invoice->amount, 0, ',', '.'); }}</p>
             </div>
             <hr class="my-4">
 
