@@ -47,7 +47,7 @@
                                             clip-rule="evenodd" />
                                     </svg>
                                 </div>
-                                <input type="text" id="simple-search" wire:model.live='cari'
+                                <input type="text" id="simple-search" wire:model.live.debounce.300ms='cari'
                                     class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-500 focus:border-primary-500 block w-full pl-10 p-2 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500"
                                     placeholder="Search">
                             </div>
@@ -151,8 +151,8 @@
                                 </td>
                             </tr>
                             @empty
-                            <tr>
-                                <td colspan="5">Belum ada data</td>
+                            <tr class="border-b dark:border-gray-700">
+                                <td class="px-4 py-6 text-center" colspan="6">Belum ada ada</td>
                             </tr>
 
                             @endforelse

@@ -16,11 +16,11 @@ class Index extends Component
     public $month;
     public $cari;
 
-    protected $queryString = ['bulan'];
+    protected $queryString = ['bulan', 'cari'];
 
     public function mount()
     {
-        // $this->cari = request()->query('cari', $this->cari);
+        $this->cari = request()->query('cari', $this->cari);
         $this->month = request()->query('bulan', $this->month);
     }
     public function render()

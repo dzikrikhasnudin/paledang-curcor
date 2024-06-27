@@ -68,8 +68,8 @@
                             <tr>
                                 <th scope="col" class="px-4 py-3">No.</th>
                                 <th wire:click="doSort('name')" scope="col " class="px-4 py-3 cursor-pointer">Nama
-                                    Pelanggan</th>
-                                <th wire:click="doSort('address')" scope="col" class="px-4 py-3 cursor-pointer">Alamat
+                                    Pelanggan <i class="bi bi-chevron-down"></i></th>
+                                <th wire:click="doSort('address')"  scope="col" class="px-4 py-3 cursor-pointer">Alamat <i class="bi bi-chevron-down"></i>
                                 </th>
                                 <th scope="col" class="px-4 py-3">Meteran Awal</th>
                                 <th scope="col" class="px-4 py-3">Meteran Saat Ini</th>
