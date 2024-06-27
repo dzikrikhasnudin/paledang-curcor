@@ -53,10 +53,17 @@
                     class="flex items-center justify-center text-white bg-amber-700 hover:bg-amber-800 focus:ring-4 focus:ring-amber-300 font-medium rounded-lg text-sm px-4 py-2 dark:bg-amber-600 dark:hover:bg-amber-700 focus:outline-none dark:focus:ring-amber-800">
                     Edit
                 </a>
-                <a href="{{ route('tagihan.create') }}"
-                    class="flex items-center justify-center text-white bg-teal-700 hover:bg-teal-800 focus:ring-4 focus:ring-teal-300 font-medium rounded-lg text-sm px-4 py-2 dark:bg-teal-600 dark:hover:bg-teal-700 focus:outline-none dark:focus:ring-teal-800">
+                @if ($invoice->status == 'unpaid')
+                <a wire:click="updateStatus('paid')"
+                    class="cursor-pointer flex items-center justify-center text-white bg-teal-700 hover:bg-teal-800 focus:ring-4 focus:ring-teal-300 font-medium rounded-lg text-sm px-4 py-2 dark:bg-teal-600 dark:hover:bg-teal-700 focus:outline-none dark:focus:ring-teal-800">
                     Tandai Sudah Lunas
                 </a>
+                @else
+                <a wire:click="updateStatus('unpaid')"
+                    class="cursor-pointer flex items-center justify-center text-white bg-red-700 hover:bg-red-800 focus:ring-4 focus:ring-red-300 font-medium rounded-lg text-sm px-4 py-2 dark:bg-red-600 dark:hover:bg-red-700 focus:outline-none dark:focus:ring-red-800">
+                    Tandai Belum Lunas
+                </a>
+                @endif
             </div>
         </div>
     </div>

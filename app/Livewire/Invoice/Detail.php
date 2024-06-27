@@ -27,4 +27,13 @@ class Detail extends ModalComponent
     {
         return view('tagihan.detail');
     }
+
+    public function updateStatus($status)
+    {
+        $this->invoice->update([
+            'status' => $status
+        ]);
+
+        return redirect()->route('tagihan.index');
+    }
 }
