@@ -30,8 +30,8 @@ class Index extends Component
         return view('tagihan.index', [
             'invoices' => $this->month == null ?
                 Payment::latest()->paginate($this->paginate) :
-                Payment::where('month', 'like', '%' . $this->month . '%')->paginate($this->paginate)
-                // Payment::where('cari', 'like', '%' . $this->cari . '%')->paginate($this->paginate)
+                Payment::filter($this->month)->paginate($this->paginate)
+            // Payment::where('cari', 'like', '%' . $this->cari . '%')->paginate($this->paginate)
         ]);
     }
 

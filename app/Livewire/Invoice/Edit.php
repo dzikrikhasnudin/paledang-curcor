@@ -36,6 +36,7 @@ class Edit extends Component
     public function render()
     {
         $clients = Client::all()->sortBy('name');
+
         return view('tagihan.edit', compact('clients'));
     }
 }

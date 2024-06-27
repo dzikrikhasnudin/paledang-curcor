@@ -24,7 +24,7 @@
             </div>
             <div class="flex justify-between mb-1 dark:text-gray-300">
                 <p>Jumlah Meter Air</p>
-                <p class="font-semibold text-gray-900 dark:text-gray-300">{{ $currentMeter }} m<sup>3</sup></p>
+                <p class="font-semibold text-gray-900 dark:text-gray-300">{{ $totalMeter }} m<sup>3</sup></p>
             </div>
             <div class="flex justify-between mb-1 dark:text-gray-300">
                 <p>Pemakaian </p>
@@ -49,10 +49,17 @@
                     class="flex items-center justify-center text-white bg-primary-700 hover:bg-primary-800 focus:ring-4 focus:ring-primary-300 font-medium rounded-lg text-sm px-4 py-2 dark:bg-primary-600 dark:hover:bg-primary-700 focus:outline-none dark:focus:ring-primary-800">
                     Kembali
                 </a>
-                <a href="{{ route('tagihan.create') }}"
-                    class="flex items-center justify-center text-white bg-teal-700 hover:bg-teal-800 focus:ring-4 focus:ring-teal-300 font-medium rounded-lg text-sm px-4 py-2 dark:bg-teal-600 dark:hover:bg-teal-700 focus:outline-none dark:focus:ring-teal-800">
+                @if ($invoice->status == 'unpaid')
+                <a wire:click="updateStatus('paid')"
+                    class="cursor-pointer flex items-center justify-center text-white bg-teal-700 hover:bg-teal-800 focus:ring-4 focus:ring-teal-300 font-medium rounded-lg text-sm px-4 py-2 dark:bg-teal-600 dark:hover:bg-teal-700 focus:outline-none dark:focus:ring-teal-800">
                     Tandai Sudah Lunas
                 </a>
+                @else
+                <a wire:click="updateStatus('unpaid')"
+                    class="cursor-pointer flex items-center justify-center text-white bg-red-700 hover:bg-red-800 focus:ring-4 focus:ring-red-300 font-medium rounded-lg text-sm px-4 py-2 dark:bg-red-600 dark:hover:bg-red-700 focus:outline-none dark:focus:ring-red-800">
+                    Tandai Belum Lunas
+                </a>
+                @endif
             </div>
 
         </div>

@@ -16,6 +16,9 @@ class Index extends Component
     public $cari;
     public $paginate = 8;
 
+    public $sortDirection = 'ASC';
+    public $sortColumn = 'name';
+
     protected $queryString = ['cari'];
 
     public function mount()
@@ -28,9 +31,15 @@ class Index extends Component
         // $clients = Client::latest();
         return view('pelanggan.index', [
             'clients' => $this->cari == null ?
-                Client::latest()->paginate($this->paginate) :
-                Client::where('name', 'like', '%' . $this->cari . '%')
-                ->orWhere('address', 'like', '%' . $this->cari . '%')->paginate($this->paginate)
+                Client::orderBy($this->sortColumn, $this->sortDirection)->paginate($this->paginate) :
+                Client::search($this->cari)
+                ->orderBy($this->sortColumn, $this->sortDirection)
+                ->paginate($this->paginate)
         ]);
+    }
+
+    public function doSort($column)
+    {
+        $this->sortColumn = $column;
     }
 }

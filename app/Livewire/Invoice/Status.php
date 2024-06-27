@@ -8,9 +8,10 @@ use Livewire\Attributes\On;
 
 class Status extends Component
 {
+    public $invoice;
     public $clientName;
     public $clientAddress;
-    public $currentMeter;
+    public $totalMeter;
     public $usage;
     public $amount;
     public $date;
@@ -20,20 +21,30 @@ class Status extends Component
 
     public function mount($id)
     {
-        $payment = Payment::find($id);
-        $this->clientName = $payment->client->name;
-        $this->clientAddress = $payment->client->address;
-        $this->currentMeter = $payment->client->current_meter;
-        $this->usage = $payment->usage;
-        $this->amount = $payment->amount;
-        $this->date = $payment->created_at;
-        $this->status = $payment->status;
-        $this->image = $payment->image;
-
+        $this->invoice = Payment::find($id);
+        $this->clientName = $this->invoice->client->name;
+        $this->clientAddress = $this->invoice->client->address;
+        $this->totalMeter = $this->invoice->total_meter;
+        $this->usage = $this->invoice->usage;
+        $this->amount = $this->invoice->amount;
+        $this->date = $this->invoice->created_at;
+        $this->status = $this->invoice->status;
+        $this->image = $this->invoice->image;
     }
     public function render()
     {
         // dd($this->image);
         return view('tagihan.status');
+    }
+
+    public function updateStatus($status)
+    {
+        $this->invoice->update([
+            'status' => $status
+        ]);
+
+        session()->flash('message', 'Data tagihan telah diperbarui.');
+
+        return redirect()->route('tagihan.index');
     }
 }

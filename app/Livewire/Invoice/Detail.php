@@ -34,6 +34,8 @@ class Detail extends ModalComponent
             'status' => $status
         ]);
 
+        session()->flash('message', 'Data tagihan telah diperbarui.');
+
         return redirect()->route('tagihan.index');
     }
 }

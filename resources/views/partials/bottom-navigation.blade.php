@@ -9,7 +9,7 @@
 
         <x-bottom-nav-link href="{{ route('keuangan.index') }}" :active="request()->routeIs('keuangan.*')">
             <i class="bi bi-coin text-2xl group-hover:text-blue-600"></i>
-            <span class="text-sm group-hover:text-blue-600 ">Keuangan</span>
+            <span class="text-sm group-hover:text-blue-600 "> Keuangan</span>
         </x-bottom-nav-link>
 
         <x-bottom-nav-link href="{{ route('pelanggan.index') }}" :active="request()->routeIs('pelanggan.*')">

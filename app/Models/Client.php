@@ -24,4 +24,10 @@ class Client extends Model
     {
         return $this->hasMany(Payment::class);
     }
+
+    public function scopeSearch($query, $value)
+    {
+        $query->where('name', 'like', "%{$value}%")
+            ->orWhere('address', 'like', "%{$value}%");
+    }
 }
