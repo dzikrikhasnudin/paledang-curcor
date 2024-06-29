@@ -7,6 +7,7 @@ use App\Livewire\Invoice\Index as Invoice;
 use App\Livewire\Invoice\Create as CreateInvoice;
 use App\Livewire\Invoice\Status as InvoiceStatus;
 use App\Livewire\Invoice\Edit as InvoiceEdit;
+use App\Livewire\Dashboard;
 
 Route::get('/', function () {
     return view('welcome');
@@ -17,9 +18,7 @@ Route::middleware([
     config('jetstream.auth_session'),
     'verified',
 ])->group(function () {
-    Route::get('/dashboard', function () {
-        return view('dashboard');
-    })->name('dashboard');
+    Route::get('/dashboard', Dashboard::class)->name('dashboard');
 
     Route::get('pelanggan', Client::class)->name('pelanggan.index');
     Route::get('keuangan', Finance::class)->name('keuangan.index');
