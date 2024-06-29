@@ -6,7 +6,6 @@
                 <h3 class="text-base font-normal text-gray-500 dark:text-gray-400">Saldo</h3>
                 <span
                     class="text-2xl font-bold leading-none text-gray-900 sm:text-3xl dark:text-white">Rp1.234.567</span>
-
             </div>
         </div>
         <div
@@ -15,7 +14,6 @@
                 <h3 class="text-base font-normal text-gray-500 dark:text-gray-400">Total Pendapatan</h3>
                 <span
                     class="text-2xl font-bold leading-none text-gray-900 sm:text-3xl dark:text-white">Rp2.000.000</span>
-
             </div>
 
         </div>
@@ -74,24 +72,29 @@
                                             Keterangan
                                         </th>
                                         <th scope="col"
-                                            class="p-4 text-xs font-medium tracking-wider text-left text-gray-500 uppercase dark:text-white">
-                                            Amount
+                                            class="p-4 text-xs font-medium tracking-wider text-end text-gray-500 uppercase dark:text-white">
+                                            Jumlah
                                         </th>
                                         <th scope="col"
                                             class="p-4 text-xs font-medium tracking-wider text-left text-gray-500 uppercase dark:text-white">
-                                            Date &amp; Time
+                                            Tanggal &amp; Time
                                         </th>
                                     </tr>
                                 </thead>
                                 <tbody class="bg-white dark:bg-gray-800">
-                                    <tr>
+                                    @forelse ($transactions as $index => $transaction)
+                                    <tr @if($loop->even) class="bg-gray-50 dark:bg-gray-700" @endif>
                                         <td
                                             class="p-4 text-sm font-normal text-gray-900 whitespace-nowrap dark:text-white">
-                                            Payment from <span class="font-semibold">Bonnie Green</span>
+                                            {{ $transaction->description }}
                                         </td>
                                         <td
-                                            class="p-4 text-sm font-semibold text-gray-900 whitespace-nowrap dark:text-white">
-                                            $2300
+                                            class="p-4 text-sm font-semibold text-gray-900 whitespace-nowrap dark:text-white text-end">
+                                            @if($transaction->category == "Pendapatan")
+                                                <span class="text-teal-700">{{ 'Rp'. number_format($transaction->amount, 0, ',', '.') }}</span>
+                                                @else
+                                                <span class="text-red-600">-{{ 'Rp'. number_format($transaction->amount, 0, ',', '.') }}</span>
+                                            @endif
                                         </td>
                                         <td
                                             class="p-4 text-sm font-normal text-gray-500 whitespace-nowrap dark:text-gray-400">
@@ -99,121 +102,9 @@
                                         </td>
 
                                     </tr>
-                                    <tr class="bg-gray-50 dark:bg-gray-700">
-                                        <td
-                                            class="p-4 text-sm font-normal text-gray-900 whitespace-nowrap dark:text-white">
-                                            Payment refund to <span class="font-semibold">#00910</span>
-                                        </td>
-                                        <td
-                                            class="p-4 text-sm font-semibold text-gray-900 whitespace-nowrap dark:text-white">
-                                            -$670
-                                        </td>
-                                        <td
-                                            class="p-4 text-sm font-normal text-gray-500 whitespace-nowrap dark:text-gray-400">
-                                            Apr 23 ,2021
-                                        </td>
+                                    @empty
 
-
-                                    </tr>
-                                    <tr>
-                                        <td
-                                            class="p-4 text-sm font-normal text-gray-900 whitespace-nowrap dark:text-white">
-                                            Payment failed from <span class="font-semibold">#087651</span>
-                                        </td>
-
-                                        <td
-                                            class="p-4 text-sm font-semibold text-gray-900 whitespace-nowrap dark:text-white">
-                                            $234
-                                        </td>
-                                        <td
-                                            class="p-4 text-sm font-normal text-gray-500 whitespace-nowrap dark:text-gray-400">
-                                            Apr 18 ,2021
-                                        </td>
-
-
-                                    </tr>
-                                    <tr class="bg-gray-50 dark:bg-gray-700">
-                                        <td
-                                            class="p-4 text-sm font-normal text-gray-900 whitespace-nowrap dark:text-white">
-                                            Payment from <span class="font-semibold">Lana Byrd</span>
-                                        </td>
-
-                                        <td
-                                            class="p-4 text-sm font-semibold text-gray-900 whitespace-nowrap dark:text-white">
-                                            $5000
-                                        </td>
-                                        <td
-                                            class="p-4 text-sm font-normal text-gray-500 whitespace-nowrap dark:text-gray-400">
-                                            Apr 15 ,2021
-                                        </td>
-
-                                    </tr>
-                                    <tr>
-                                        <td
-                                            class="p-4 text-sm font-normal text-gray-900 whitespace-nowrap dark:text-white">
-                                            Payment from <span class="font-semibold">Jese Leos</span>
-                                        </td>
-
-                                        <td
-                                            class="p-4 text-sm font-semibold text-gray-900 whitespace-nowrap dark:text-white">
-                                            $2300
-                                        </td>
-                                        <td
-                                            class="p-4 text-sm font-normal text-gray-500 whitespace-nowrap dark:text-gray-400">
-                                            Apr 15 ,2021
-                                        </td>
-
-                                    </tr>
-                                    <tr class="bg-gray-50 dark:bg-gray-700">
-                                        <td
-                                            class="p-4 text-sm font-normal text-gray-900 whitespace-nowrap dark:text-white">
-                                            Refund to <span class="font-semibold">THEMESBERG LLC</span>
-                                        </td>
-
-                                        <td
-                                            class="p-4 text-sm font-semibold text-gray-900 whitespace-nowrap dark:text-white">
-                                            -$560
-                                        </td>
-                                        <td
-                                            class="p-4 text-sm font-normal text-gray-500 whitespace-nowrap dark:text-gray-400">
-                                            Apr 11 ,2021
-                                        </td>
-
-                                    </tr>
-
-                                    <tr>
-                                        <td
-                                            class="p-4 text-sm font-normal text-gray-900 whitespace-nowrap dark:text-white">
-                                            Payment from <span class="font-semibold">Lana Lysle</span>
-                                        </td>
-
-                                        <td
-                                            class="p-4 text-sm font-semibold text-gray-900 whitespace-nowrap dark:text-white">
-                                            $1437
-                                        </td>
-                                        <td
-                                            class="p-4 text-sm font-normal text-gray-500 whitespace-nowrap dark:text-gray-400">
-                                            Apr 6 ,2021
-                                        </td>
-
-                                    </tr>
-                                    <tr class="bg-gray-50 dark:bg-gray-700">
-                                        <td
-                                            class="p-4 text-sm font-normal text-gray-900 whitespace-nowrap dark:text-white">
-                                            Payment to <span class="font-semibold">Joseph Mcfall</span>
-                                        </td>
-
-                                        <td
-                                            class="p-4 text-sm font-semibold text-gray-900 whitespace-nowrap dark:text-white">
-                                            $980
-                                        </td>
-                                        <td
-                                            class="p-4 text-sm font-normal text-gray-500 whitespace-nowrap dark:text-gray-400">
-                                            Apr 1 ,2021
-                                        </td>
-
-
-                                    </tr>
+                                    @endforelse
                                     <tr>
                                         <td
                                             class="p-4 text-sm font-normal text-gray-900 whitespace-nowrap dark:text-white">

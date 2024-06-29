@@ -16,9 +16,11 @@ class PaymentFactory extends Factory
      */
     public function definition(): array
     {
+        $month = fake()->randomElement(['Mei', 'Juni', 'Juli', 'Agustus', 'September', 'Oktober', 'November', 'Desember']);
+
         return [
             'client_id' => rand(1, 20),
-            'month' => fake()->randomElement(['Mei', 'Juni', 'Juli', 'Agustus', 'September', 'Oktober', 'November', 'Desember']),
+            'month' => $month,
             'total_meter' => rand(1, 20),
             'amount' => rand(2000, 50000),
             'status' => fake()->randomElement(['paid', 'unpaid']),
