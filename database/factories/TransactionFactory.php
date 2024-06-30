@@ -17,7 +17,7 @@ class TransactionFactory extends Factory
     public function definition(): array
     {
         return [
-            'date' => fake()->date('Y-m-d'),
+            'date' => fake()->date(),
             'description' => fake()->sentence(5),
             'category' => fake()->randomElement(['Pendapatan', 'Pengeluaran']),
             'amount' => rand(10000, 200000),

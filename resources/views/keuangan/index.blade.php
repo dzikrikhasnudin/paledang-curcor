@@ -1,30 +1,31 @@
 <div class="p-3 space-y-3">
     <div class="grid w-full grid-cols-1 gap-4 mt-4 xl:grid-cols-3">
         <div
-            class="items-center justify-between p-4 bg-white border border-gray-200 rounded-lg shadow-sm sm:flex dark:border-gray-700 sm:p-6 dark:bg-gray-800">
+            class="flex items-center justify-between p-4 bg-white border border-gray-200 rounded-lg shadow-sm sm:flex dark:border-gray-700 sm:p-6 dark:bg-gray-800">
             <div class="w-full">
                 <h3 class="text-base font-normal text-gray-500 dark:text-gray-400">Saldo</h3>
-                <span
-                    class="text-2xl font-bold leading-none text-gray-900 sm:text-3xl dark:text-white">Rp1.234.567</span>
+                <span class="text-2xl font-bold leading-none text-gray-900 sm:text-3xl dark:text-white">
+                    @if ($balance < 0) - @rupiah($balance * -1) @else @rupiah($balance) @endif </span>
             </div>
+            <x-solar-money-bag-broken class="w-16 h-16 text-primary-600" />
         </div>
         <div
-            class="items-center justify-between p-4 bg-white border border-gray-200 rounded-lg shadow-sm sm:flex dark:border-gray-700 sm:p-6 dark:bg-gray-800">
+            class="flex items-center justify-between p-4 bg-white border border-gray-200 rounded-lg shadow-sm sm:flex dark:border-gray-700 sm:p-6 dark:bg-gray-800">
             <div class="w-full">
                 <h3 class="text-base font-normal text-gray-500 dark:text-gray-400">Total Pendapatan</h3>
                 <span
-                    class="text-2xl font-bold leading-none text-gray-900 sm:text-3xl dark:text-white">Rp2.000.000</span>
+                    class="text-2xl font-bold leading-none text-gray-900 sm:text-3xl dark:text-white">@rupiah($incomes->sum('amount'))</span>
             </div>
-
+            <x-iconsax-bro-money-recive class="w-16 h-16 text-teal-500" />
         </div>
         <div
-            class="items-center justify-between p-4 bg-white border border-gray-200 rounded-lg shadow-sm sm:flex dark:border-gray-700 sm:p-6 dark:bg-gray-800">
+            class="flex items-center justify-between p-4 bg-white border border-gray-200 rounded-lg shadow-sm sm:flex dark:border-gray-700 sm:p-6 dark:bg-gray-800">
             <div class="w-full">
                 <h3 class="text-base font-normal text-gray-500 dark:text-gray-400">Total Pengeluaran</h3>
                 <span
-                    class="text-2xl font-bold leading-none text-gray-900 sm:text-3xl dark:text-white">Rp1.500.000</span>
-
+                    class="text-2xl font-bold leading-none text-gray-900 sm:text-3xl dark:text-white">@rupiah($expenses->sum('amount'))</span>
             </div>
+            <x-iconsax-bro-money-send class="w-16 h-16 text-red-600" />
 
         </div>
 
@@ -77,7 +78,7 @@
                                         </th>
                                         <th scope="col"
                                             class="p-4 text-xs font-medium tracking-wider text-left text-gray-500 uppercase dark:text-white">
-                                            Tanggal &amp; Time
+                                            Tanggal
                                         </th>
                                     </tr>
                                 </thead>
@@ -91,52 +92,26 @@
                                         <td
                                             class="p-4 text-sm font-semibold text-gray-900 whitespace-nowrap dark:text-white text-end">
                                             @if($transaction->category == "Pendapatan")
-                                                <span class="text-teal-700">{{ 'Rp'. number_format($transaction->amount, 0, ',', '.') }}</span>
-                                                @else
-                                                <span class="text-red-600">-{{ 'Rp'. number_format($transaction->amount, 0, ',', '.') }}</span>
+                                            <span class="text-teal-500">@rupiah($transaction->amount)</span>
+                                            @else
+                                            <span class="text-red-600">-@rupiah($transaction->amount)</span>
                                             @endif
                                         </td>
                                         <td
                                             class="p-4 text-sm font-normal text-gray-500 whitespace-nowrap dark:text-gray-400">
-                                            Apr 23 ,2021
+                                            {{ $transaction->date->translatedFormat('d F Y') }}
                                         </td>
 
                                     </tr>
                                     @empty
-
-                                    @endforelse
                                     <tr>
-                                        <td
-                                            class="p-4 text-sm font-normal text-gray-900 whitespace-nowrap dark:text-white">
-                                            Payment from <span class="font-semibold">Alphabet LLC</span>
+                                        <td colspan="3"
+                                            class="p-4 font-semibold text-gray-900 whitespace-nowrap dark:text-white border-b text-center">
+                                            Belum ada data
                                         </td>
-
-                                        <td
-                                            class="p-4 text-sm font-semibold text-gray-900 whitespace-nowrap dark:text-white">
-                                            $11,436
-                                        </td>
-                                        <td
-                                            class="p-4 text-sm font-normal text-gray-500 whitespace-nowrap dark:text-gray-400">
-                                            Mar 23 ,2021
-                                        </td>
-
                                     </tr>
-                                    <tr class="bg-gray-50 dark:bg-gray-700">
-                                        <td
-                                            class="p-4 text-sm font-normal text-gray-900 whitespace-nowrap dark:text-white">
-                                            Payment from <span class="font-semibold">Bonnie Green</span>
-                                        </td>
+                                    @endforelse
 
-                                        <td
-                                            class="p-4 text-sm font-semibold text-gray-900 whitespace-nowrap dark:text-white">
-                                            $560
-                                        </td>
-                                        <td
-                                            class="p-4 text-sm font-normal text-gray-500 whitespace-nowrap dark:text-gray-400">
-                                            Mar 23 ,2021
-                                        </td>
-
-                                    </tr>
                                 </tbody>
                             </table>
                         </div>

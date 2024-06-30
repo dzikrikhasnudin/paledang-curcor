@@ -17,7 +17,7 @@ return new class extends Migration
             $table->enum('category', ['Pendapatan', 'Pengeluaran']);
             $table->bigInteger('amount');
             $table->string('image')->nullable()->comment('Bukti Transaksi');
-            $table->date('date');
+            $table->timestamp('date');
             $table->timestamps();
         });
     }
