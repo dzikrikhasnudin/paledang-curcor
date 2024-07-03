@@ -65,9 +65,10 @@
                 <div class="overflow-x-auto rounded-lg">
                     <div class="inline-block min-w-full align-middle">
                         <div class="overflow-hidden shadow sm:rounded-lg">
-                            <table class="min-w-full divide-y divide-gray-200 dark:divide-gray-600">
+                            <table class="w-full text-sm text-left text-gray-500 dark:text-gray-400">
                                 <thead class="bg-gray-50 dark:bg-gray-700">
                                     <tr>
+
                                         <th scope="col"
                                             class="p-4 text-xs font-medium tracking-wider text-left text-gray-500 uppercase dark:text-white">
                                             Keterangan
@@ -77,14 +78,19 @@
                                             Jumlah
                                         </th>
                                         <th scope="col"
-                                            class="p-4 text-xs font-medium tracking-wider text-left text-gray-500 uppercase dark:text-white">
+                                            class="p-4 text-xs font-medium tracking-wider text-center text-gray-500 uppercase dark:text-white">
                                             Tanggal
+                                        </th>
+                                        <th scope="col"
+                                            class="p-4 text-xs font-medium tracking-wider text-right text-gray-500 uppercase dark:text-white">
+                                            <span class="sr-only">Aksi</span>
                                         </th>
                                     </tr>
                                 </thead>
                                 <tbody class="bg-white dark:bg-gray-800">
                                     @forelse ($transactions as $index => $transaction)
                                     <tr @if($loop->even) class="bg-gray-50 dark:bg-gray-700" @endif>
+
                                         <td
                                             class="p-4 text-sm font-normal text-gray-900 whitespace-nowrap dark:text-white">
                                             {{ $transaction->description }}
@@ -98,8 +104,30 @@
                                             @endif
                                         </td>
                                         <td
-                                            class="p-4 text-sm font-normal text-gray-500 whitespace-nowrap dark:text-gray-400">
+                                            class="p-4 text-sm font-normal text-center text-gray-500 whitespace-nowrap dark:text-gray-400">
                                             {{ $transaction->date->translatedFormat('d F Y') }}
+                                        </td>
+                                        <td class="p-4 flex items-center justify-end">
+                                            <button type="button"
+                                                class="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm p-2 text-center inline-flex items-center me-2 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">
+                                                Detail
+                                                <span class="sr-only">Icon description</span>
+                                            </button>
+                                            @if ($transaction->image)
+                                            <button type="button"
+                                                class="text-white bg-teal-700 hover:bg-teal-800 focus:ring-4 focus:outline-none focus:ring-teal-300 font-medium rounded-lg text-sm p-2 text-center inline-flex items-center me-2 dark:bg-teal-600 dark:hover:bg-teal-700 dark:focus:ring-teal-800">
+                                                <i class="bi bi-card-image"></i>
+                                            </button>
+                                            @else
+                                            <button type="button"
+                                                class="cursor-not-allowed text-white bg-teal-200  font-medium rounded-lg text-sm p-2 text-center inline-flex items-center me-2 dark:bg-teal-300  ">
+                                                <i class="bi bi-card-image"></i>
+                                            </button>
+                                            @endif
+                                            <button type="button"
+                                                class="text-white bg-red-700 hover:bg-red-800 focus:ring-4 focus:outline-none focus:ring-red-300 font-medium rounded-lg text-sm p-2 text-center inline-flex items-center me-2 dark:bg-red-600 dark:hover:bg-red-700 dark:focus:ring-red-800">
+                                                <i class="bi bi-trash-fill"></i>
+                                            </button>
                                         </td>
 
                                     </tr>
@@ -115,6 +143,10 @@
                                 </tbody>
                             </table>
                         </div>
+
+                        <nav class=" space-y-3 md:space-y-0 p-4 " aria-label="Table navigation">
+                            {{ $transactions->links(data: ['scrollTo' => false]) }}
+                        </nav>
                     </div>
                 </div>
             </div>
