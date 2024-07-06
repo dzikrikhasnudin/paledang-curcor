@@ -41,7 +41,7 @@
                     <span class="text-base font-normal text-gray-500 dark:text-gray-400">Rincian penggunaan dana</span>
                 </div>
                 <div class="items-center sm:flex">
-                    <select id="countries"
+                    <select id="month"
                         class="flex items-center bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500 mr-4">
                         <option selected>Filter</option>
                         <option value="Januari">Januari</option>
@@ -57,7 +57,11 @@
                         <option value="November">November</option>
                         <option value="Desember">Desember</option>
                     </select>
-
+                    <button type="button" wire:click="$dispatch('openModal', { component: 'transaction.create' })"
+                        class="flex items-center justify-center text-white bg-teal-700 hover:bg-teal-800 focus:ring-4 focus:ring-teal-300 font-medium rounded-lg text-sm px-4 py-2 dark:bg-teal-600 dark:hover:bg-teal-700 focus:outline-none dark:focus:ring-teal-800">
+                        <i class="bi bi-plus me-1 text-xl"></i>
+                        Tambah Transaksi
+                    </button>
                 </div>
             </div>
             <!-- Table -->
