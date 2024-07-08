@@ -2,9 +2,9 @@
 
 namespace App\Livewire\Transaction;
 
-use LivewireUI\Modal\ModalComponent;
+use Livewire\Component;
 
-class Create extends ModalComponent
+class Create extends Component
 {
     public $category;
     public $description;
@@ -15,15 +15,5 @@ class Create extends ModalComponent
     public function render()
     {
         return view('keuangan.create');
-    }
-
-    public static function closeModalOnClickAway(): bool
-    {
-        return false;
-    }
-
-    public static function closeModalOnEscape(): bool
-    {
-        return false;
     }
 }
