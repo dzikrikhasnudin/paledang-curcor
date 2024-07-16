@@ -20,7 +20,7 @@
                 <span class="sr-only">Toggle sidebar</span>
             </button>
             <a href="#" class="flex items-center justify-between mr-4 ">
-                <img src="https://flowbite.s3.amazonaws.com/logo.svg" class="hidden md:flex mr-3 h-8"
+                <img src="{{ asset('images/water-logo.png') }}" class="hidden md:flex mr-3 h-8"
                     alt="Flowbite Logo" />
                 <span class="self-center text-2xl font-semibold whitespace-nowrap dark:text-white">Paledang<span
                         class="font-bold text-blue-600">Curcor</span>
@@ -75,11 +75,14 @@
                 </ul>
 
                 <ul class="py-1 text-gray-700 dark:text-gray-300" aria-labelledby="dropdown">
+                    <form method="POST" action="{{ route('logout') }}" x-data>
+                        @csrf
                     <li>
-                        <a href="#"
+                        <a href="{{ route('logout') }}" @click.prevent="$root.submit();"
                             class="block py-2 px-4 text-sm hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">Sign
                             out</a>
                     </li>
+                    </form>
                 </ul>
             </div>
         </div>

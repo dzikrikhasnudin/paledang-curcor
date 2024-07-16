@@ -24,7 +24,13 @@ class DatabaseSeeder extends Seeder
         User::factory()->create([
             'name' => 'Dzikri Khasnudin',
             'email' => 'dzikri.khasnudin2@gmail.com',
-            'password' => Hash::make('123456789'),
+            'password' => Hash::make('Lulus2021.'),
+        ]);
+
+        User::factory()->create([
+            'name' => 'Paledang Curcor Admin',
+            'email' => 'admin@paledangcurcor.com',
+            'password' => Hash::make('caicurcor123'),
         ]);
     }
 }
