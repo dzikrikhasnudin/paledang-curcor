@@ -7,11 +7,13 @@ use Livewire\Component;
 use Livewire\WithPagination;
 use Livewire\Attributes\Layout;
 use Illuminate\Support\Facades\Storage;
+use Illuminate\Database\Eloquent\Builder;
 
+#[Layout('layouts.app')]
 class Index extends Component
 {
     use WithPagination;
-    #[Layout('layouts.app')]
+
 
     public $paginate = 8;
     public $month;
@@ -26,13 +28,20 @@ class Index extends Component
     }
     public function render()
     {
-        // dd(Payment::where('client_id', 10)->get());
+        if ($this->month) {
+            $invoices = Payment::filter($this->month);
+        } else {
+            $invoices = Payment::latest();
+        }
+
+        if ($this->cari) {
+            $invoices = Payment::whereHas('client', function (Builder $query) {
+                $query->where('name', 'like', '%' . $this->cari . '%');
+            });
+        }
 
         return view('tagihan.index', [
-            'invoices' => $this->month == null ?
-                Payment::latest()->paginate($this->paginate) :
-                Payment::filter($this->month)->paginate($this->paginate)
-            // Payment::where('cari', 'like', '%' . $this->cari . '%')->paginate($this->paginate)
+            'invoices' => $invoices->paginate($this->paginate)
         ]);
     }
 
