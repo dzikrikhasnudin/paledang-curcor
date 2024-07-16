@@ -3,7 +3,7 @@
     "type": "module",
     "scripts": {
         "dev": "vite",
-        "build": "vite build"
+        "build": "vite build && vite build --ssr"
     },
     "devDependencies": {
         "@tailwindcss/forms": "^0.5.7",
@@ -16,6 +16,8 @@
         "vite": "^5.0"
     },
     "dependencies": {
+        "@fortawesome/fontawesome-free": "^6.5.2",
+        "@fortawesome/fontawesome-svg-core": "^6.5.2",
         "flowbite": "^2.3.0"
     }
 }

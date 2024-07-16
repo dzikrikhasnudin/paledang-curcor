@@ -4,8 +4,9 @@ namespace App\Livewire\Invoice;
 
 use App\Models\Payment;
 use Livewire\Component;
-use Livewire\Attributes\Layout;
 use Livewire\WithPagination;
+use Livewire\Attributes\Layout;
+use Illuminate\Support\Facades\Storage;
 
 class Index extends Component
 {
@@ -38,6 +39,11 @@ class Index extends Component
     public function destroy($id)
     {
         $invoice = Payment::find($id);
+
+        if (Storage::exists('public', $invoice->image)) {
+            Storage::delete('public/' . $invoice->image);
+        }
+
         $invoice->delete();
     }
 }

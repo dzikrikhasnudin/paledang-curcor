@@ -26,12 +26,7 @@ class Create extends Component
 
     public function save()
     {
-
-        // dd($this->category, $this->description, $this->amount, $this->date, $this->image->getClientOriginalName());
-
         if ($this->image) {
-            $extension = $this->image->getClientOriginalExtension();
-
             $filePath = 'Transaksi';
             $fileName = time()  . '-' .  $this->image->getClientOriginalName();
 
@@ -47,6 +42,8 @@ class Create extends Component
             'amount' => $this->amount,
             'image' => $imagePath
         ]);
+
+        session()->flash('message', 'Data transaksi telah disimpan');
 
         return redirect()->route('keuangan.index');
     }

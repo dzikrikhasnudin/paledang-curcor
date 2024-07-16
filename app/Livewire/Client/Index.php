@@ -40,8 +40,8 @@ class Index extends Component
 
     public function doSort($column)
     {
-        if($this->sortColumn === $column) {
-            $this->sortDirection = ($this->sortDirection == 'ASC')? 'DESC' : 'ASC';
+        if ($this->sortColumn === $column) {
+            $this->sortDirection = ($this->sortDirection == 'ASC') ? 'DESC' : 'ASC';
             return;
         }
         $this->sortColumn = $column;

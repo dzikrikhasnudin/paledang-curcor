@@ -1,8 +1,8 @@
 <div class="p-3 lg:max-w-4xl mx-auto">
     <section class="bg-white dark:bg-gray-900">
         <div class="py-6 px-4 mx-auto max-w-2xl lg:py-16">
-            <h2 class="mb-4 text-xl font-bold text-gray-900 dark:text-white">Tambah Transaksi</h2>
-            <form class="p-4 md:p-5" wire:submit='save'>
+            <h2 class="mb-4 text-xl font-bold text-gray-900 dark:text-white">Edit Transaksi</h2>
+            <form class="p-4 md:p-5" wire:submit='update'>
                 <div class="grid gap-4 sm:grid-cols-2 sm:gap-6">
                     <div class="sm:col-span-2">
                         <label for="client"
@@ -51,13 +51,14 @@
                     <div class="w-full sm:col-span-2">
                         <label class="block mb-2 text-sm font-medium text-gray-900 dark:text-white" for="image">Bukti
                             Transaksi (opsional)</label>
-                        <input wire:model='image'
+                        <input wire:model='newImage'
                             class="block w-full text-sm text-gray-900 border border-gray-300 rounded-lg cursor-pointer bg-gray-50 dark:text-gray-400 focus:outline-none dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400"
                             id="image" type="file">
-
-                        @if ($image)
+                        <img src="{{ asset('storage/' . $image) }}"
+                            class="lg:w-1/2 my-4 rounded-lg aspect-square object-cover mx-auto @if($newImage) hidden @endif">
+                        @if ($newImage)
                         <hr class="my-4">
-                        <img src="{{ $image->temporaryUrl() }}"
+                        <img src="{{ $newImage->temporaryUrl() ?? asset('storage/') . $image }}"
                             class="lg:w-1/2 rounded-lg aspect-square object-cover mx-auto">
                         @endif
                     </div>
@@ -78,7 +79,6 @@
     </section>
 
     @push('script')
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/flowbite/2.2.0/datepicker.min.js"></script>
     <script>
         const datepickerEl = document.getElementById('tanggal');
 

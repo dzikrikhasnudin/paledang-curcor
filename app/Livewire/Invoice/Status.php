@@ -4,6 +4,7 @@ namespace App\Livewire\Invoice;
 
 use App\Models\Payment;
 use Livewire\Component;
+use App\Models\Transaction;
 use Livewire\Attributes\On;
 
 class Status extends Component
@@ -17,6 +18,7 @@ class Status extends Component
     public $date;
     public $status;
     public $image;
+    public $month;
 
 
     public function mount($id)
@@ -30,6 +32,7 @@ class Status extends Component
         $this->date = $this->invoice->created_at;
         $this->status = $this->invoice->status;
         $this->image = $this->invoice->image;
+        $this->month = $this->invoice->month;
     }
     public function render()
     {
@@ -42,6 +45,15 @@ class Status extends Component
         $this->invoice->update([
             'status' => $status
         ]);
+
+        if ($status == 'paid') {
+            Transaction::create([
+                'date' => $this->date,
+                'description' => 'Pembayaran Tagihan Bulan ' . $this->month . ' dari ' . $this->clientName,
+                'category' => 'Pendapatan',
+                'amount' => $this->amount,
+            ]);
+        }
 
         session()->flash('message', 'Data tagihan telah diperbarui.');
 
