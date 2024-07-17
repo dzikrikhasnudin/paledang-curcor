@@ -66,7 +66,7 @@
                                 </li>
                                 @empty
                                 <li class="py-3 sm:py-4">
-                                    <div class="flex items-center justify-center">Belum ada data pendapatan</div>
+                                    <div class="flex items-center justify-center">Belum ada data pengeluaran</div>
                                 </li>
                                 @endforelse
                             </ul>
@@ -118,7 +118,9 @@
                                     </div>
                                 </li>
                                 @empty
-
+                                <li class="py-3 sm:py-4">
+                                    <div class="flex items-center justify-center">Belum ada data</div>
+                                </li>
                                 @endforelse
 
                             </ul>
