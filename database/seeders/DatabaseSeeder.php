@@ -17,9 +17,9 @@ class DatabaseSeeder extends Seeder
      */
     public function run(): void
     {
-        Client::factory(50)->create();
-        Payment::factory(50)->create();
-        Transaction::factory(30)->create();
+        // Client::factory(50)->create();
+        // Payment::factory(50)->create();
+        // Transaction::factory(30)->create();
 
         User::factory()->create([
             'name' => 'Dzikri Khasnudin',
