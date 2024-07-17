@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\ExportController;
 use Illuminate\Support\Facades\Route;
 use App\Livewire\Dashboard;
 
@@ -22,4 +23,9 @@ Route::middleware([
     Route::get('tagihan/edit/{id}', \App\Livewire\Invoice\Edit::class)->name('tagihan.edit');
     Route::get('keuangan/tambah-transaksi', \App\Livewire\Transaction\Create::class)->name('keuangan.create');
     Route::get('keuangan/edit-transaksi/{id}', \App\Livewire\Transaction\Edit::class)->name('keuangan.edit');
+
+
+    Route::get('pelanggan/cetak', [ExportController::class, 'client'])->name('pelanggan.export');
+    Route::get('tagihan/cetak/{month}', [ExportController::class, 'invoices'])->name('cetak.tagihan');
+    Route::get('keuangan/cetak/{month}', [ExportController::class, 'transactions'])->name('cetak.transaksi');
 });

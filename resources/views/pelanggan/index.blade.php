@@ -54,11 +54,16 @@
                     </div>
                     <div
                         class="w-full md:w-auto flex flex-col md:flex-row space-y-2 md:space-y-0 items-stretch md:items-center justify-end md:space-x-3 flex-shrink-0">
+                        <a href="{{ route('pelanggan.export') }}"
+                            class="hidden sm:flex items-center justify-center text-white bg-gray-700 hover:bg-gray-800 focus:ring-4 focus:ring-gray-300 font-medium rounded-lg text-sm px-4 p-2.5 dark:bg-primary-600 dark:hover:bg-primary-700 focus:outline-none dark:focus:ring-primary-800">
+                            <i class="bi bi-printer"></i>
+                        </a>
                         <button type="button" wire:click="$dispatch('openModal', { component: 'client.create' })"
                             class="flex items-center justify-center text-white bg-primary-700 hover:bg-primary-800 focus:ring-4 focus:ring-primary-300 font-medium rounded-lg text-sm px-4 py-2 dark:bg-primary-600 dark:hover:bg-primary-700 focus:outline-none dark:focus:ring-primary-800">
                             <i class="bi bi-plus me-1 text-xl"></i>
                             Tambah Pelanggan
                         </button>
+
 
                     </div>
                 </div>
@@ -69,7 +74,8 @@
                                 <th scope="col" class="px-4 py-3">No.</th>
                                 <th wire:click="doSort('name')" scope="col " class="px-4 py-3 cursor-pointer">Nama
                                     Pelanggan <i class="bi bi-chevron-down"></i></th>
-                                <th wire:click="doSort('address')"  scope="col" class="px-4 py-3 cursor-pointer">Alamat <i class="bi bi-chevron-down"></i>
+                                <th wire:click="doSort('address')" scope="col" class="px-4 py-3 cursor-pointer">Alamat
+                                    <i class="bi bi-chevron-down"></i>
                                 </th>
                                 <th scope="col" class="px-4 py-3">Meteran Awal</th>
                                 <th scope="col" class="px-4 py-3">Meteran Saat Ini</th>
@@ -111,8 +117,6 @@
                                 <td class="px-4 py-6 text-center" colspan="5">Belum ada ada</td>
                             </tr>
                             @endforelse
-
-
 
                         </tbody>
                     </table>

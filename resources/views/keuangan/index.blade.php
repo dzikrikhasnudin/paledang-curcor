@@ -76,9 +76,14 @@
                     </div>
                     <div
                         class="w-full md:w-auto flex flex-col md:flex-row space-y-2 md:space-y-0 items-stretch md:items-center justify-end md:space-x-3 flex-shrink-0">
-                        <div class="grid grid-cols-2 gap-2 items-center justify-between">
+                        <div class="grid grid-cols-5 gap-2 items-center justify-between">
+                            <button type="button"
+                                wire:click="$dispatch('openModal', { component: 'transaction.export'})"
+                                class="flex items-center justify-center text-gray-800 bg-gray-50 border border-gray-300 hover:bg-gray-700 hover:text-white transition duration-300 focus:ring-4 focus:ring-gray-300 font-medium rounded-lg text-sm p-2.5 dark:bg-primary-600 dark:hover:bg-primary-700 focus:outline-none dark:focus:ring-primary-800">
+                                <i class="bi bi-printer text-md"></i>
+                            </button>
                             <select id="month" wire:model.live.debounce.300ms='month'
-                                class="w-full items-center bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500 mr-4">
+                                class="w-full col-span-2 items-center bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500 mr-4">
                                 <option>Filter</option>
                                 <option value="1">Januari</option>
                                 <option value="2">Februari</option>
@@ -94,7 +99,7 @@
                                 <option value="12">Desember</option>
                             </select>
                             <div
-                                class="w-full md:w-auto flex flex-col md:flex-row space-y-2 md:space-y-0 items-stretch md:items-center justify-end md:space-x-3 flex-shrink-0">
+                                class="w-full col-span-2 md:w-auto flex flex-col md:flex-row space-y-2 md:space-y-0 items-stretch md:items-center justify-end md:space-x-3 flex-shrink-0">
                                 <a href="{{ route('keuangan.create') }}"
                                     class="flex items-center justify-center text-white bg-primary-700 hover:bg-primary-800 focus:ring-4 focus:ring-primary-300 font-medium rounded-lg text-sm px-4 py-2 dark:bg-primary-600 dark:hover:bg-primary-700 focus:outline-none dark:focus:ring-primary-800">
                                     <i class="bi bi-plus me-1 text-xl"></i>
