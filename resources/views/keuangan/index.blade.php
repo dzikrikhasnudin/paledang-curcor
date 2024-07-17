@@ -103,7 +103,7 @@
                                 <a href="{{ route('keuangan.create') }}"
                                     class="flex items-center justify-center text-white bg-primary-700 hover:bg-primary-800 focus:ring-4 focus:ring-primary-300 font-medium rounded-lg text-sm px-4 py-2 dark:bg-primary-600 dark:hover:bg-primary-700 focus:outline-none dark:focus:ring-primary-800">
                                     <i class="bi bi-plus me-1 text-xl"></i>
-                                    Tambah Transaksi
+                                    Transaksi
                                 </a>
                             </div>
                         </div>
