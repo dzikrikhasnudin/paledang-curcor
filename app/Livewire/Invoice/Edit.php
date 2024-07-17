@@ -39,4 +39,18 @@ class Edit extends Component
 
         return view('tagihan.edit', compact('clients'));
     }
+    
+    public function update()
+    {
+        $invoice = Payment::find($this->clientId);
+        
+        $invoice->update([
+            'client_id' => $this->clientId,
+            'month' => $this->month,
+            'total_meter' => $this->meter,
+            'usage' => $usage,
+            'amount' => $usage * $this->price,
+            'image' => $imagePath
+        ]);
+    }
 }

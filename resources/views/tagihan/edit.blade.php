@@ -2,7 +2,7 @@
     <section class="bg-white dark:bg-gray-900">
         <div class="py-6 px-4 mx-auto max-w-2xl lg:py-16">
             <h2 class="mb-4 text-xl font-bold text-gray-900 dark:text-white">Ubah Data Tagihan</h2>
-            <form wire:submit='save'>
+            <form wire:submit='update'>
                 <div class="grid gap-4 sm:grid-cols-2 sm:gap-6">
                     <div>
                         <label for="client" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Nama
