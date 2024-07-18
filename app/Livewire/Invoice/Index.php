@@ -5,11 +5,13 @@ namespace App\Livewire\Invoice;
 use App\Models\Payment;
 use Livewire\Component;
 use Livewire\WithPagination;
+use Livewire\Attributes\Title;
 use Livewire\Attributes\Layout;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Database\Eloquent\Builder;
 
 #[Layout('layouts.app')]
+#[Title('Data Tagihan - Paledang Curcor')]
 class Index extends Component
 {
     use WithPagination;

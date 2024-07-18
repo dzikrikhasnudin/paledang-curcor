@@ -4,9 +4,11 @@ namespace App\Livewire\Invoice;
 
 use App\Models\Client;
 use App\Models\Payment;
+use Livewire\Attributes\Title;
 use Livewire\Component;
 use Livewire\WithFileUploads;
 
+#[Title('Tambah Tagihan - Paledang Curcor')]
 class Create extends Component
 {
     use WithFileUploads;

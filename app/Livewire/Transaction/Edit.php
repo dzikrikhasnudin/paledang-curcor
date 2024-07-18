@@ -6,7 +6,9 @@ use Livewire\Component;
 use App\Models\Transaction;
 use Livewire\WithFileUploads;
 use Illuminate\Support\Carbon;
+use Livewire\Attributes\Title;
 
+#[Title('Edit Transaksi - Paledang Curcor')]
 class Edit extends Component
 {
     use WithFileUploads;

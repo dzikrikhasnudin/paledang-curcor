@@ -6,8 +6,10 @@ use App\Models\Client;
 use Livewire\Component;
 use Livewire\Attributes\On;
 use Livewire\WithPagination;
+use Livewire\Attributes\Title;
 use Livewire\Attributes\Layout;
 
+#[Title('Data Pelanggan - Paledang Curcor')]
 class Index extends Component
 {
     use WithPagination;

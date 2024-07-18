@@ -5,7 +5,9 @@ namespace App\Livewire;
 use App\Models\Payment;
 use Livewire\Component;
 use App\Models\Transaction;
+use Livewire\Attributes\Title;
 
+#[Title('Dashboard - Paledang Curcor')]
 class Dashboard extends Component
 {
     public $invoices;

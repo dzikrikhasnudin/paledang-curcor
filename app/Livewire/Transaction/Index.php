@@ -2,14 +2,16 @@
 
 namespace App\Livewire\Transaction;
 
-use App\Models\Transaction;
-use Illuminate\Support\Facades\Storage;
 use Livewire\Component;
-use Livewire\Attributes\Layout;
+use App\Models\Transaction;
 use Livewire\Attributes\On;
 use Livewire\WithPagination;
+use Livewire\Attributes\Title;
+use Livewire\Attributes\Layout;
+use Illuminate\Support\Facades\Storage;
 
 #[Layout('layouts.app')]
+#[Title('Data Transaksi - Paledang Curcor')]
 class Index extends Component
 {
     use WithPagination;
