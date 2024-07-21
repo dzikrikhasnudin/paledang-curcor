@@ -54,12 +54,14 @@
                         <input wire:model='newImage'
                             class="block w-full text-sm text-gray-900 border border-gray-300 rounded-lg cursor-pointer bg-gray-50 dark:text-gray-400 focus:outline-none dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400"
                             id="image" type="file">
-                        <img src="{{ asset('storage/' . $image) }}"
-                            class="lg:w-1/2 my-4 rounded-lg aspect-square object-cover mx-auto @if($newImage) hidden @endif">
                         @if ($newImage)
                         <hr class="my-4">
-                        <img src="{{ $newImage->temporaryUrl() ?? asset('storage/') . $image }}"
-                            class="lg:w-1/2 rounded-lg aspect-square object-cover mx-auto">
+                        <img src="{{ $newImage->temporaryUrl() }}"
+                            class="rounded-lg lg:w-1/2 mx-auto aspect-square object-cover">
+                        @elseif ($image != null)
+                        <hr class="my-4">
+                        <img src="{{ asset('storage/' . $image) }}"
+                            class="rounded-lg lg:w-1/2 mx-auto aspect-square object-cover">
                         @endif
                     </div>
                 </div>
