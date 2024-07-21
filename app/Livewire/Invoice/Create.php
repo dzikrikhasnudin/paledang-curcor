@@ -31,8 +31,7 @@ class Create extends Component
         $previousMonth = Payment::where('client_id', $this->clientId)->latest()->first();
 
         $client = Client::find($this->clientId);
-        if ($previousMonth == null)
-        {
+        if ($previousMonth == null) {
             $previousMeter = $client->start_meter;
         } else {
             $previousMeter = $previousMonth->total_meter;
@@ -66,5 +65,4 @@ class Create extends Component
 
         return redirect()->route('tagihan.status', $payment->id);
     }
-
 }

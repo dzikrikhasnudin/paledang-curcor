@@ -21,16 +21,10 @@ class DatabaseSeeder extends Seeder
         // Payment::factory(50)->create();
         // Transaction::factory(30)->create();
 
-        User::factory()->create([
-            'name' => 'Dzikri Khasnudin',
-            'email' => 'dzikri.khasnudin2@gmail.com',
-            'password' => Hash::make('Lulus2021.'),
-        ]);
-
-        User::factory()->create([
-            'name' => 'Paledang Curcor Admin',
-            'email' => 'admin@paledangcurcor.com',
-            'password' => Hash::make('caicurcor123'),
-        ]);
+        // User::factory()->create([
+        //     'name' => 'John Doe',
+        //     'email' => 'john.doe@gmail.com',
+        //     'password' => '',
+        // ]);
     }
 }
