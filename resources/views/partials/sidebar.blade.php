@@ -54,7 +54,14 @@
                     <i
                         class="bi bi-cash-coin text-xl text-gray-500 transition duration-75 dark:text-gray-400 group-hover:text-gray-900 dark:group-hover:text-white"></i>
                     <span class="flex-1 ml-3 whitespace-nowrap">Keuangan</span>
+                </a>
+            </li>
 
+            <li>
+                <a href="{{ route('pengguna.index') }}"
+                    class="flex items-center p-2 text-base font-medium text-gray-900 rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700 group">
+                    <i class="bi bi-person-fill text-xl text-gray-500 transition duration-75 dark:text-gray-400 group-hover:text-gray-900 dark:group-hover:text-white"></i>
+                        <span class="flex-1 ml-3 whitespace-nowrap">Pengurus</span>
                 </a>
             </li>
 

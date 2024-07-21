@@ -23,6 +23,7 @@ Route::middleware([
     Route::get('tagihan/edit/{id}', \App\Livewire\Invoice\Edit::class)->name('tagihan.edit');
     Route::get('keuangan/tambah-transaksi', \App\Livewire\Transaction\Create::class)->name('keuangan.create');
     Route::get('keuangan/edit-transaksi/{id}', \App\Livewire\Transaction\Edit::class)->name('keuangan.edit');
+    Route::get('pengguna', \App\Livewire\User\Index::class)->name('pengguna.index');
 
 
     Route::get('pelanggan/cetak', [ExportController::class, 'client'])->name('pelanggan.export');
