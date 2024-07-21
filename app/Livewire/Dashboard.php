@@ -17,8 +17,8 @@ class Dashboard extends Component
     public function mount()
     {
         $this->invoices = Payment::where('status', 'unpaid')->latest()->take(5)->get();
-        $this->incomes = Transaction::income()->take(6)->get();
-        $this->expenses = Transaction::expense()->take(6)->get();
+        $this->incomes = Transaction::latest()->income()->take(6)->get();
+        $this->expenses = Transaction::latest()->expense()->take(6)->get();
     }
     public function render()
     {
