@@ -22,6 +22,8 @@ class Edit extends Component
     public $image;
     public $newImage;
 
+    protected $listeners = ['dateSelected' => 'updateDate'];
+
     public function mount($id)
     {
         $this->transaction = Transaction::find($id);
@@ -60,5 +62,12 @@ class Edit extends Component
         session()->flash('message', 'Data transaksi telah diperbarui');
 
         return redirect()->route('keuangan.index');
+    }
+
+    public function updateDate($date)
+    {
+        $tanggal = Carbon::parse($date);
+        $this->date = $tanggal->timezone('Asia/Jakarta')->format('Y-m-d');
+        // $this->date = $date;
     }
 }
