@@ -18,7 +18,7 @@ class Create extends Component
     public $month;
     public $meter;
     public $image;
-
+    public $error;
 
     public function render()
     {
@@ -28,6 +28,13 @@ class Create extends Component
 
     public function save()
     {
+        $invoiceExist = Payment::where('client_id', $this->clientId)->where('month', $this->month)->exists();
+
+        if ($invoiceExist) {
+            session()->flash('error', 'Data tagihan tersebut sudah ada');
+            return redirect(url()->previous());
+        }
+
         $previousMonth = Payment::where('client_id', $this->clientId)->latest()->first();
 
         $client = Client::find($this->clientId);
