@@ -5,22 +5,9 @@
             <form wire:submit='save'>
                 <div class="grid gap-4 sm:grid-cols-2 sm:gap-6">
                     <div>
-                        <label for="client" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Nama
-                            Pelanggan</label>
-                        <select id="client" wire:model='clientId'
-                            class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-500 focus:border-primary-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500">
-                            <option selected>Pilih Pelanggan</option>
-                            @foreach ($clients as $client)
-                            <option value="{{ $client->id }}">{{ $client->name . ' (' .
-                                $client->address . ') ' }}
-                            </option>
-                            @endforeach
-                        </select>
-                    </div>
-                    <div>
                         <label for="month"
                             class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Bulan</label>
-                        <select id="month" wire:model='month'
+                        <select id="month" wire:model.live='month'
                             class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-500 focus:border-primary-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500">
                             <option selected>Pilih Bulan</option>
                             <option value="Januari">Januari</option>
@@ -37,6 +24,20 @@
                             <option value="Desember">Desember</option>
                         </select>
                     </div>
+                    <div>
+                        <label for="client" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Nama
+                            Pelanggan</label>
+                        <select id="client" wire:model='clientId'
+                            class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-500 focus:border-primary-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500">
+                            <option selected>Pilih Pelanggan</option>
+                            @foreach ($clients as $client)
+                            <option value="{{ $client->id }}">{{ $client->name . ' (' .
+                                $client->address . ') ' }}
+                            </option>
+                            @endforeach
+                        </select>
+                    </div>
+
                     <div class="sm:col-span-2">
                         <label for="meter" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Jumlah
                             Meter (m<sup>3</sup>) </label>

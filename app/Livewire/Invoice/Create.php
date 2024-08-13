@@ -15,14 +15,31 @@ class Create extends Component
 
     public $clientId;
     public $price = 2000;
-    public $month;
+    public $month = null;
     public $meter;
     public $image;
+
+    private function clientWithoutPaymentInMonth($month)
+    {
+        $clientWithoutPayment = [];
+        $clients = Client::all();
+
+        foreach ($clients as $client) {
+            $payments = Payment::where('client_id', $client->id)->where('month', $month)->get();
+
+            if ($payments->isEmpty()) {
+                $clientWithoutPayment[] = $client;
+            }
+        }
+
+        return $clientWithoutPayment;
+    }
 
 
     public function render()
     {
-        $clients = Client::all()->sortBy('name');
+        $clients = collect($this->clientWithoutPaymentInMonth($this->month))->sortBy('name');
+
         return view('tagihan.create', compact('clients'));
     }
 
