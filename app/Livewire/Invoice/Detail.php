@@ -15,7 +15,8 @@ class Detail extends ModalComponent
 
     public function mount()
     {
-        $this->date = $this->invoice->created_at;
+        // $this->date = $this->invoice->created_at;
+        $this->date = now();
     }
 
     public function render()
