@@ -12,7 +12,7 @@ use Illuminate\Support\Facades\Storage;
 
 #[Layout('layouts.app')]
 #[Title('Data Transaksi - Paledang Curcor')]
-class Index extends Component
+class Archive extends Component
 {
     use WithPagination;
 
@@ -22,9 +22,9 @@ class Index extends Component
     public $balance;
     public $cari;
     public $month;
-    public $currentYear;
+    public $year;
 
-    protected $queryString = ['bulan'];
+    protected $queryString = ['year'];
 
     public function mount()
     {
@@ -33,14 +33,13 @@ class Index extends Component
 
     public function render()
     {
-        $this->currentYear = date('Y');
 
         $this->updateBalances();
 
         if ($this->month != null) {
-            $transactions = Transaction::latest('date')->whereMonth('date', $this->month)->paginate($this->paginate);
+            $transactions = Transaction::latest('date')->whereMonth('date', $this->month)->whereYear('date', $this->year)->paginate($this->paginate);
         } else {
-            $transactions = Transaction::latest('date')->whereYear('date', $this->currentYear)->paginate($this->paginate);
+            $transactions = Transaction::latest('date')->whereYear('date', $this->year)->paginate($this->paginate);
         }
 
         return view('keuangan.index', compact('transactions'));
@@ -61,7 +60,7 @@ class Index extends Component
     #[On('transaction-deleted')]
     public function updateBalances()
     {
-        $currentYear = 2025;
+        $currentYear = $this->year;
 
         if ($this->month != null) {
             $this->incomes = Transaction::income()->whereMonth('date', $this->month)->whereYear('date', $currentYear)->get();

@@ -25,7 +25,33 @@
     </div>
     @endif
 
-    <div class="px-3 grid w-full grid-cols-1 gap-4 mt-4 xl:grid-cols-3">
+    <div class="flex justify-end items-center bg-gray-50 dark:bg-gray-900 p-3 mt-4 rounded-xl">
+        <div>
+            <button id="dropdownPilihTahun" data-dropdown-toggle="dropdownTahun"
+                class="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center inline-flex items-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800"
+                type="button">Tahun: {{ $currentYear ?? $year }} <i class="bi bi-caret-down ms-3"></i>
+            </button>
+
+            <!-- Dropdown menu -->
+            <div id="dropdownTahun"
+                class="z-10 hidden bg-white divide-y divide-gray-100 rounded-lg shadow-sm w-48 dark:bg-gray-700">
+                <ul class="py-2 text-sm text-gray-700 dark:text-gray-200 text-center "
+                    aria-labelledby="dropdownDefaultButton">
+                    <li>
+                        <a href="{{ route('keuangan.arsip', 2025) }}"
+                            class="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">2025</a>
+                    </li>
+                    <li>
+                        <a href="{{ route('keuangan.arsip', 2024) }}"
+                            class="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">2024</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+
+    </div>
+
+    <div class="px-3 grid w-full grid-cols-1 gap-4  xl:grid-cols-3">
         <div
             class="flex items-center justify-between p-4 bg-white border border-gray-200 rounded-lg shadow-sm sm:flex dark:border-gray-700 sm:p-6 dark:bg-gray-800">
             <div class="w-full">
@@ -76,7 +102,14 @@
                     </div>
                     <div
                         class="w-full md:w-auto flex flex-col md:flex-row space-y-2 md:space-y-0 items-stretch md:items-center justify-end md:space-x-3 flex-shrink-0">
-                        <div class="grid grid-cols-5 gap-2 items-center justify-between">
+                        <div class="grid grid-cols-6 gap-2 items-center justify-between">
+                            {{--
+                            <button type="button"
+                                wire:click="$dispatch('openModal', { component: 'transaction.bulk-delete'})"
+                                class="flex items-center justify-center text-gray-800 bg-gray-50 border border-gray-300 hover:bg-red-600 hover:text-white transition duration-300 focus:ring-4 focus:ring-gray-300 font-medium rounded-lg text-sm p-2.5 dark:bg-primary-600 dark:hover:bg-primary-700 focus:outline-none dark:focus:ring-red-800">
+                                <i class="bi bi-trash"></i>
+                            </button>
+                            --}}
                             <button type="button"
                                 wire:click="$dispatch('openModal', { component: 'transaction.export'})"
                                 class="flex items-center justify-center text-gray-800 bg-gray-50 border border-gray-300 hover:bg-gray-700 hover:text-white transition duration-300 focus:ring-4 focus:ring-gray-300 font-medium rounded-lg text-sm p-2.5 dark:bg-primary-600 dark:hover:bg-primary-700 focus:outline-none dark:focus:ring-primary-800">
